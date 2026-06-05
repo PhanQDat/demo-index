@@ -36,7 +36,7 @@ jobs:
       # BƯỚC 3: Agent chạy lệnh đẩy file index.html lên S3 Bucket
       - name: Day file len S3 Bucket
         run: |
-          aws s3 cp Production.html s3://bucketdemowebapp/Production.html
+          aws s3 cp Production.html s3://webtest-runner2/Production.html
 
       # BƯỚC 4: Clear cache CloudFront (Nếu cần)
       - name: Clear Cache CloudFront
