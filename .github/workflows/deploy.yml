@@ -6,9 +6,9 @@ on:
       - main
 
 jobs:
-  deploy_job:
+  deploy_dev:
     # Chỉ định chạy trên Agent local của bạn
-    runs-on: self-hosted
+    runs-on: runner1
 
     steps:
       # BƯỚC 1: Agent tự động pull mã nguồn mới nhất từ GitHub về thư mục riêng của nó
@@ -24,9 +24,9 @@ jobs:
       - name: Clear Cache CloudFront
         run: |
           aws cloudfront create-invalidation --distribution-id ET5SG1IGOJ9VI --paths "/*"
-    deploy_job:
+    deploy_pro:
       # Chỉ định chạy trên Agent local của bạn
-      runs-on: self-hosted
+      runs-on: runner2
 
       steps:
         # BƯỚC 1: Agent tự động pull mã nguồn mới nhất từ GitHub về thư mục riêng của nó
