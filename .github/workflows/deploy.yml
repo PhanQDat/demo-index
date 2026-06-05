@@ -24,21 +24,21 @@ jobs:
       - name: Clear Cache CloudFront
         run: |
           aws cloudfront create-invalidation --distribution-id ET5SG1IGOJ9VI --paths "/*"
-    deploy_pro:
-      # Chỉ định chạy trên Agent local của bạn
-      runs-on: runner2
+  deploy_pro:
+    # Chỉ định chạy trên Agent local của bạn
+    runs-on: runner2
 
-      steps:
-        # BƯỚC 1: Agent tự động pull mã nguồn mới nhất từ GitHub về thư mục riêng của nó
-        - name: Agent Pull Code Từ GitHub
-          uses: actions/checkout@v4
+    steps:
+      # BƯỚC 1: Agent tự động pull mã nguồn mới nhất từ GitHub về thư mục riêng của nó
+      - name: Agent Pull Code Từ GitHub
+        uses: actions/checkout@v4
 
-        # BƯỚC 3: Agent chạy lệnh đẩy file index.html lên S3 Bucket
-        - name: Day file len S3 Bucket
-          run: |
-            aws s3 cp index.html s3://bucketdemowebapp/Production.html
+      # BƯỚC 3: Agent chạy lệnh đẩy file index.html lên S3 Bucket
+      - name: Day file len S3 Bucket
+        run: |
+          aws s3 cp index.html s3://bucketdemowebapp/Production.html
 
-        # BƯỚC 4: Clear cache CloudFront (Nếu cần)
-        - name: Clear Cache CloudFront
-          run: |
-            aws cloudfront create-invalidation --distribution-id E202R5K0GVTCLL --paths "/*"
+      # BƯỚC 4: Clear cache CloudFront (Nếu cần)
+      - name: Clear Cache CloudFront
+        run: |
+          aws cloudfront create-invalidation --distribution-id E202R5K0GVTCLL --paths "/*"
